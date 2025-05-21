@@ -1,48 +1,55 @@
 // lib/categories.ts
-import { products } from "./products";
+import { products, Product } from "./products"; // Assuming Product interface is exported from products.ts
 import { 
-  MdTv,           // Televisions
-  MdHeadphones,    // Audio
-  MdHome,          // Smart Home
-  MdVideogameAsset, // Gaming
-  MdKitchen       // Home Appliances
+  MdTv,
+  MdHeadphones,
+  MdHome,
+  MdVideogameAsset,
+  MdKitchen 
 } from "react-icons/md";
+import React from 'react'; // Import React if not already globally available for React.ComponentType
 
 export interface Category {
   name: string;
   slug: string;
-  icon: React.ComponentType<{ className?: string }>;
+  icon: React.ComponentType<{ className?: string }>; // Icon component type
   count: number;
 }
+
 export const categories: Category[] = [
   {
-     name: "Televisions",
+    name: "Televisions",
     slug: "televisions",
     icon: MdTv,
-    count: 3,
+    // Make count dynamic and case-insensitive
+    count: products.filter(p => p.category?.toLowerCase() === "televisions").length,
   },
   {
     name: "Audio",
     slug: "audio",
     icon: MdHeadphones,
-    count: products.filter(p => p.category === "audio").length
+    // Make count dynamic and case-insensitive
+    count: products.filter(p => p.category?.toLowerCase() === "audio").length,
   },
   {
     name: "Smart Home",
     slug: "smart-home",
     icon: MdHome,
-    count: products.filter(p => p.category === "smart-home").length
+    // Make count dynamic and case-insensitive
+    count: products.filter(p => p.category?.toLowerCase() === "smart-home").length,
   },
   {
     name: "Gaming",
     slug: "gaming",
     icon: MdVideogameAsset,
-    count: products.filter(p => p.category === "gaming").length
+    // Make count dynamic and case-insensitive
+    count: products.filter(p => p.category?.toLowerCase() === "gaming").length,
   },
-   {
+  {
     name: "Home Appliances",
     slug: "home-appliances",
     icon: MdKitchen,
-    count: products.filter(p => p.category === "home-appliances").length
+    // Make count dynamic and case-insensitive
+    count: products.filter(p => p.category?.toLowerCase() === "home-appliances").length,
   }
 ];

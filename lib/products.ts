@@ -3,12 +3,16 @@
 export interface Product {
   id: string;
   name: string;
-  description: string;
-  price: number;
   image: string;
-  category: string;
-  onSale?: boolean;         // <-- Add this line
-  originalPrice?: number;   // <-- Add this line if you want to show original price
+  price: number;
+  category: string; // This is key for the category link
+  description?: string;
+  onSale?: boolean;
+  originalPrice?: number;
+  rating?: number;       // For star ratings
+  reviews?: number;      // For review count
+  sku?: string;          // Stock Keeping Unit
+  availability?: 'In Stock' | 'Out of Stock' | 'Pre-order';         // <-- Add this line if you want to show original price
 }
 
 export const products: Product[] = [
@@ -21,6 +25,10 @@ export const products: Product[] = [
     category: "televisions", // Add this
     onSale: true,
     originalPrice: 59999,
+    rating: 4.5, 
+    reviews: 100,          
+    sku: "12345",           
+    availability: "In Stock", // Optional rating
   },
   {
     id: "2",
@@ -31,6 +39,10 @@ export const products: Product[] = [
     category: "laptops",
     onSale: true,
     originalPrice: 48999,
+    rating: 4.0,
+    reviews: 50,
+    sku: "67890",
+    availability: "In Stock",
   },
   {
     id: "3",
@@ -41,6 +53,10 @@ export const products: Product[] = [
     category: "audio",
     onSale: true,
     originalPrice: 34999,
+    rating: 4.2,
+    reviews: 75,
+    sku: "11223",
+    availability: "In Stock",
   },
    {
     id: "4",
@@ -51,6 +67,10 @@ export const products: Product[] = [
     category: "home-appliances",
     onSale: true,
     originalPrice: 34999,
+    rating: 4.0,
+    reviews: 60,
+    sku: "44556",
+    availability: "In Stock",
   },
    {
     id: "5",
@@ -61,6 +81,11 @@ export const products: Product[] = [
     category: "home-appliances",
     onSale: true,
     originalPrice: 24_999,
+    rating: 4.5,
+    reviews: 80,
+    sku: "78901",
+    availability: "In Stock",
+    
   },
 
 ];

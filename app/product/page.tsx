@@ -10,7 +10,7 @@ interface SearchParams {
 
 export default function ProductsPage({ searchParams }: { searchParams: SearchParams }) {
   const filteredProducts = searchParams.category
-    ? products.filter(p => p.category.toLowerCase() === searchParams.category?.toLowerCase())
+    ? products.filter(p => p.category?.toLowerCase() === searchParams.category?.toLowerCase())
     : products;
 
   const categoryName = searchParams.category
@@ -20,8 +20,8 @@ export default function ProductsPage({ searchParams }: { searchParams: SearchPar
     : 'All';
 
   return (
-    <main className="container mx-auto px-4 py-8">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+    <main className="container mx-auto px-0 sm:px-4 py-8">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8 px-4 sm:px-0">
         <div>
           <h1 className="text-2xl md:text-3xl font-bold text-gray-800">
             {categoryName} Products
@@ -40,16 +40,14 @@ export default function ProductsPage({ searchParams }: { searchParams: SearchPar
       {filteredProducts.length === 0 ? (
         <div className="text-center py-12">
           <p className="text-lg text-gray-500 mb-4">No products found in this category</p>
-          <Link href="/products" className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors">
+          <Link href="/product" className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors">
             View All Products
           </Link>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-5">
           {filteredProducts.map(product => (
-            <div key={product.id} className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow">
-              <ProductCard product={product} />
-            </div>
+            <ProductCard key={product.id} product={product} />
           ))}
         </div>
       )}

@@ -1,19 +1,21 @@
-import "../styles/global.css";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+// app/layout.tsx
+import "../styles/global.css"; // Your global styles
+// Make sure Navbar and Footer are NOT directly imported here,
+// as they will be rendered conditionally by LayoutVisibility
 
-// Since we're using Zustand, we don't need a CartProvider wrapper
-// Zustand stores are available globally by default
+import LayoutVisibility from "../components/LayoutVisibility"; // Import your new client component
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      {/* You can add your head content here if needed */}
+      <head>
+        <title>My Next.js App</title>
+        <meta name="description" content="A Next.js application" />
+      </head>
       <body className="min-h-screen flex flex-col">
-        <Navbar />
-        <main className="flex-grow">
-          {children}
-        </main>
-        <Footer />
+        {/* Wrap your children with the LayoutVisibility component */}
+        <LayoutVisibility>{children}</LayoutVisibility>
       </body>
     </html>
   );
